@@ -1,22 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
 import Nav from './view/Nav'
+import { useState } from 'react';
 
 
 let App = () => {
-  let name = 'Twilight'
-  let obj = { name: "Truong", age: 19 }
-  let link = 'https://www.facebook.com/Narutobu/'
+  let [name, setName] = useState('Twilight')
+  let [input, setInput] = useState('')
+
+  const handleOnClick = (event) => {
+    setName(input)
+  }
+
+  const handleOnChange = (event) => {
+    setInput(event.target.value)
+  }
   return (
     <div className="App">
       <Nav />
       <header className="App-header">
-        {console.log("check obj", obj)}
-
         <img src={logo} className="App-logo" alt="logo" />
-        {JSON.stringify(obj)}
-        <h1>Hello world with {name} in {obj.age}!</h1>
-        <a href={link} target='_blank' rel="noreferrer">Visit my profile</a>
+        <h1>Hello world with {name} !</h1>
+        <input type='text' value={input} onChange={(event) => handleOnChange(event)}></input>
+        <button type='button' onClick={(event) => handleOnClick(event)}> Click me</button>
       </header>
     </div>
   );
